@@ -21,11 +21,10 @@
 
 #area_chart {
   width: 700px;
-  height: 500px;
+  height: 600px;
 }
 
 /*  Charts  */
-svg { border: 1px solid #dedede; }
 
 .axis path, .axis line {
   fill: none;
@@ -34,4 +33,8 @@ svg { border: 1px solid #dedede; }
 }
 
 .area { fill: #4ca3bd; }
+
+.line {
+  stroke: #000;
+}
 
