@@ -32,6 +32,15 @@
   shape-rendering: crispEdges;
 }
 
+.x.axis text {
+  margin-top: 10px;
+  font-size: 12px;
+}
+
+.y.axis text {
+  font-size: 12px;
+}
+
 .tick line {
   opacity: 0.3;
 }
@@ -49,5 +58,11 @@
 
 .line {
   stroke: #000;
+}
+
+.x_label,
+.y_label {
+  font-variant: small-caps;
+  /*transform: translate(-50%, 0);*/
 }
 

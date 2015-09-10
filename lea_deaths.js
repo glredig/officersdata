@@ -7,8 +7,8 @@
     var margins = {
       top: 30,
       right: 30,
-      bottom: 30,
-      left: 40
+      bottom: 50,
+      left: 50
     };
 
     var total_height = 500;
@@ -62,12 +62,30 @@
     svg.append("g")
       .attr("class", "x axis")
       .attr("transform", "translate(" + margins.left + "," + (height + margins.top) + ")")
-      .call(xAxis);
+      .call(xAxis)
+      .selectAll('text')
+      .style("text-anchor", "end")
+      .attr('transform', 'translate(12,' + 10 + ')');
 
     svg.append("g")
         .attr("class", "y axis")
         .attr("transform", "translate(" + margins.left + "," + margins.top + ")")
         .call(yAxis);  
+
+    svg.append("text")
+      .attr("class", "x_label")
+      .attr("text-anchor", "end")
+      .attr("x", (width + margins.left) / 2)
+      .attr("y", height + margins.top + margins.bottom - 6)
+      .text("year");
+
+    svg.append("text")
+      .attr("class", "y_label")
+      .attr("text-anchor", "end")
+      .attr("x", -(height + margins.top) / 2 + 50 )
+      .attr("dy", ".75em")
+      .attr("transform", "rotate(-90)")
+      .text("law enforcement deaths");
 
     var line = d3.svg.line()
       .x(function(d) { return x(d.x); })
