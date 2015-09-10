@@ -19,9 +19,19 @@
   padding: 25px;
 }
 
+#content_wrapper h1 {
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 50px;
+  color: #999999;
+  border-bottom: 1px solid #dddddd;
+  text-align: left;
+}
+
 #area_chart {
   width: 600px;
-  height: 500px;
+  height: 400px;
+  margin-top: 25px;
 }
 
 /*  Charts  */
@@ -49,11 +59,13 @@
 .area { 
   fill: #4ca3bd; 
   opacity: 0.7;
+  stroke-width: 0;
 }
 
 .felony_area { 
   fill: #bd4ca3; 
   opacity: 0.5;
+  stroke-width: 0;
 }
 
 .line {
@@ -66,3 +78,51 @@
   /*transform: translate(-50%, 0);*/
 }
 
+.legend_total,
+.legend_felony,
+.legend_accidental {
+  font-weight: bold;
+  font-variant: small-caps;
+}
+
+div.tooltip {   
+  position: absolute;           
+  width: 100px;                  
+  height: 110px;                 
+  padding: 10px;             
+  font-size: 12px;        
+  background: #555555;   
+  color: #eeeeee;
+  border-radius: 3px;           
+  pointer-events: none;         
+}
+
+div.tooltip:before {
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 5px 8.7px 5px 0;
+  border-color: transparent #555555 transparent transparent;
+  content: '';
+  position: absolute;
+  left: -8px;
+  top: 23px;
+}
+
+.tooltip span,
+.tooltip div {
+  background-color: transparent;
+}
+
+.tooltip span.label {
+  font-weight: lighter;
+}
+
+.tooltip div.value {
+  text-align: center;
+  margin-bottom: 3px;
+}
+
+circle {
+  cursor: pointer;
+}
