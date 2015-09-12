@@ -42,8 +42,6 @@
       .x(function(d) { return x(d.year) })
       .y(function(d) { return y(d.killsacc)})                                          
 
-    
-
     var xAxis = d3.svg.axis()
       .scale(x)
       .tickFormat(d3.format("d"))
@@ -225,5 +223,61 @@
       .attr('y', (height * .15))
       .style('fill', '#000000')
       .text('total')  
-    });
+
+    /************************
+    **   Bar Chart
+    *************************/
+    var x_bar = d3.scale.ordinal()
+      .rangeRoundBands([0, width], .1);
+
+    var svg_bar = d3.select("#bar_chart").append("svg")
+      .attr("width", width + margins.left + margins.right)
+      .attr("height", height + margins.top + margins.bottom)
+      .append("g")
+      .attr("transform", "translate(" + margins.left + "," + margins.top + ")");
+
+    x_bar.domain(data.map(function(d) { return d.year; }));
+
+    var x_barAxis = d3.svg.axis()
+      .scale(x_bar) 
+      .orient("bottom");
+
+    svg_bar.append("g")
+        .attr("class", "x axis")
+        .attr("transform", "translate(0," + height + ")")
+        .call(x_barAxis)
+        .style("text-anchor", "end")
+            .attr("dx", "-.8em")
+            .attr("dy", ".15em")
+            .attr("transform", "rotate(-65)" );
+
+    svg_bar.append("g")
+        .attr("class", "y axis")
+        .call(yAxis)
+        .append("text")
+        .attr("transform", "rotate(-90)")
+        .attr("y", 6)
+        .attr("dy", ".71em")
+        .style("text-anchor", "end")
+        .text("Frequency");
+
+    svg_bar.selectAll(".bar")
+        .data(data)
+        .enter().append("rect")
+        .attr("class", "bar_acc")
+        .attr("x", function(d) { return x_bar(d.year); })
+        .attr("width", x_bar.rangeBand())
+        .attr("y", function(d) { return y(d.killsacc); })
+        .attr("height", function(d) { return height - y(d.killsacc); });
+
+    svg_bar.selectAll(".bar")
+        .data(data)
+        .enter().append("rect")
+        .attr("class", "bar_felony")
+        .attr("x", function(d) { return x_bar(d.year); })
+        .attr("width", x_bar.rangeBand())
+        .attr("y", function(d) { return y(d.kills); })
+        .attr("height", function(d) { return height - y(d.killsfel); });    
+  });
+
 })();

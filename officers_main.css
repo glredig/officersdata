@@ -126,3 +126,11 @@ div.tooltip:before {
 circle {
   cursor: pointer;
 }
+
+.bar_acc {
+  fill: #4ca3bd;
+}
+
+.bar_felony {
+  fill: #aaaaaa;
+}
