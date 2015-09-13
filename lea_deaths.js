@@ -18,7 +18,7 @@
     var height = total_height - margins.top - margins.bottom;
     var width = total_width - margins.left - margins.right;
     
-    var svg = d3.select('#area_chart').append('svg')
+    var svg = d3.select('#line_chart').append('svg')
       .attr('width', total_width)
       .attr('height', total_height);
 
@@ -246,20 +246,25 @@
         .attr("class", "x axis")
         .attr("transform", "translate(0," + height + ")")
         .call(x_barAxis)
-        .style("text-anchor", "end")
+        .selectAll("text")  
+            .style("text-anchor", "end")
             .attr("dx", "-.8em")
             .attr("dy", ".15em")
             .attr("transform", "rotate(-65)" );
 
+
     svg_bar.append("g")
         .attr("class", "y axis")
         .call(yAxis)
-        .append("text")
+
+    svg_bar.append("text")
+        .attr('class', 'y_label')
         .attr("transform", "rotate(-90)")
-        .attr("y", 6)
-        .attr("dy", ".71em")
+        .attr("x", -(height + margins.top) / 2 + 70 )
+        .attr('y', -50)
+        .attr("dy", ".75em")
         .style("text-anchor", "end")
-        .text("Frequency");
+        .text("law enforcement deaths");
 
     svg_bar.selectAll(".bar")
         .data(data)
@@ -278,6 +283,19 @@
         .attr("width", x_bar.rangeBand())
         .attr("y", function(d) { return y(d.kills); })
         .attr("height", function(d) { return height - y(d.killsfel); });    
-  });
 
+    svg_bar.append('text')
+      .attr('class', 'legend_felony')
+      .attr('x', (width * .9))
+      .attr('y', (height * .1))
+      .style('fill', '#aaaaaa')
+      .text('felony')  
+
+    svg_bar.append('text')
+      .attr('class', 'legend_total')
+      .attr('x', (width * .9))
+      .attr('y', (height * .15))
+      .style('fill', '#4ca3bd')
+      .text('accidental')      
+  });
 })();

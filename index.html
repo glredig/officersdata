@@ -3,18 +3,24 @@
   <head>
     <link rel="stylesheet" type="text/css" href="officers_main.css">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,700' rel='stylesheet' type='text/css'>
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.css' rel='stylesheet' type='text/css'>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
-    <script src="http://dimplejs.org/dist/dimple.v2.1.6.min.js"></script>
+    
   </head>
   <body>
     <div id="left_nav_wrapper">
+      <ul>
+        <li id='line_chart_link' class='chart_select active'>Line chart <i class='fa fa-bar-chart'></i></li>
+        <li id='bar_chart_link' class='chart_select'>Bar chart <i class='fa fa-line-chart'></i></li>
+      </ul>
     </div>
     <div id="content_wrapper">
       <h1>Officers Killed & Assaulted</h1>
-      <div id="area_chart"></div>
-      <div id="bar_chart"></div>
+      <div id="line_chart" class='chart'></div>
+      <div id="bar_chart" class='chart' style='opacity: 0.0;'></div>
     </div>
     <script src="lea_deaths.js"></script>
+    <script src="selection.js"></script>
   </body>
 </html>
 
