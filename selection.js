@@ -23,9 +23,11 @@
 
     for (var j = 0, len = chart_els.length; j < len; j++) {
       chart_els[j].style.opacity = '0.0'; // fade all out;
+      chart_els[j].style.zIndex = '-1';
     }
 
     link.className += ' active';
     chart.style.opacity = '1.0';
+    chart.style.zIndex = '0';
   }
 })();
