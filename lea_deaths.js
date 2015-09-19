@@ -296,6 +296,33 @@
       .attr('x', (width * .9))
       .attr('y', (height * .15))
       .style('fill', '#4ca3bd')
-      .text('accidental')      
+      .text('accidental')  
+
+    d3.selectAll('#sort_total').on('click', sort_bars);
+    
+    function sort_bars() {
+      var x_bar0 = x_bar.domain(data.sort(function(a, b) {
+            return b.kills - a.kills;
+          })
+            .map(function(d) {
+              return d.year;
+            }))
+            .copy();
+
+      svg_bar.selectAll(".bar")
+        .sort(function(a, b) { return x_bar0(a.year) - x_bar0(b.year); });
+
+      var transition = svg_bar.transition().duration(750),
+        delay = function(d, i) { return i * 50; };
+
+      transition.selectAll(".bar")
+        .delay(delay)
+        .attr("x", function(d) { return x_bar0(d.year); });
+
+      transition.select(".x.axis")
+        .call(x_barAxis)
+        .selectAll("g")
+        .delay(delay);
+    }      
   });
 })();

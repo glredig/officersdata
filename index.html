@@ -17,7 +17,11 @@
     <div id="content_wrapper">
       <h1>Officers Killed & Assaulted</h1>
       <div id="line_chart" class='chart'></div>
-      <div id="bar_chart" class='chart' style='opacity: 0.0;'></div>
+
+      <div id="bar_chart" class='chart' style='opacity: 0.0; z-index: -1;'>
+        <br>
+        Sort by: <span id="sort_year" class="bar_sort">Year</span> | <span id="sort_total" class="bar_sort">Total Deaths</span>
+      </div>
     </div>
     <script src="lea_deaths.js"></script>
     <script src="selection.js"></script>
